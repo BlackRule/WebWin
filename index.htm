@@ -1,0 +1,77 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+<!-- Код подключения WebWin API -->
+<link rel="stylesheet" type="text/css" href="styles/ww_core_1.0.css">
+<script language="javascript" type="text/javascript" src="scripts/ww_core_1.0.js"></script>
+<script language="javascript" type="text/javascript" src="jquery-1.6.2.js"></script>
+<!-- Теперь можно использовать WebWin API-->
+<title>WebWin API v1.0</title>
+</head>
+<body scroll="no">
+<script type="text/javascript">
+function infoUpdate(){
+	WW.windows[1].setBody(
+		"Версия WebWin: "+WW.getVersion()+"<br>"+
+		"Ширина экрана WebWin: "+WW.getScreenWidth()+"<br>"+
+		"Высота экрана WebWin: "+WW.getScreenHeight()+"<br>"+
+		"Url картинки рабочего стола WebWin: "+WW.getBgUrl()+"<br>"+
+		"Сейчас окнон: "+WW.getWinNum()+"<br>"+
+		"Индекс этого окна: "+win1.getIndex()+"<br>"+
+		"Ширина этого окна: "+win1.getWidth()+"<br>"+
+		"Высота этого окна: "+win1.getHeight()+"<br>"+
+		"Заголовок этого окна: "+win1.getTitle()+"<br>"+
+		"Позиция X этого окна: "+win1.getPosX()+"<br>"+
+		"Позиция Y этого окна: "+win1.getPosY()+"<br>"+
+		"Адрес минииконки этого окна: "+win1.getMinIcoUrl()+"<br>"+
+		"Адрес иконки этого окна: "+win1.getIcoUrl()+"<br>"+
+		"Прокрутка этого окна: "+win1.getScrolling()+"<br>"+
+		"Изменение размеров этого окна: "+win1.isResizable()+"<br>"+
+		"Введите сюда код:<br><textarea id='code'></textarea><br><input type='button' value='Исполнить' onclick='eval(document.getElementById(\"code\").value);'><br>"+
+		"<input type='button' value='Обновить' onclick='infoUpdate();'>"
+	);
+}
+window.onload = function () {
+
+    var element = document.body;
+    var req = element.requestFullScreen || element.webkitRequestFullScreen || element.mozRequestFullScreen;
+
+    if(req)
+        req.call(element);
+    else
+    {
+        var wscript = new ActiveXObject("Wscript.shell");
+        wscript.SendKeys("{F11}");
+    }
+
+    return false;
+
+};
+var WW=new WebWin("images/bg0.jpg");
+var win0=new WebWinWindow({title:"Окно0",minIcoUrl:"apps/calculator/icons/general.ico",icoUrl:"apps/calculator/icons/generalm.ico",posY:20,posX:20,width:240,height:200,resizable:true,scrolling:"vertical"});
+var win1=new WebWinWindow({title:"Окно1",minIcoUrl:"images/icons/22_24X24.ico",icoUrl:"images/icons/22_32X32.ico",posX:400,posY:15,width:100,height: 400,scrolling:"no",resizable:false});
+var win2=new WebWinWindow({title:"Окно3",minIcoUrl:false,icoUrl:false,posY:360,posX:50,width:240,height:200,scrolling:"all"});
+win0.setBody('<iframe align="top" frameborder="0" scrolling="no" style="width: 500px;height: 400px;" src="apps/calculator/index.htm"></iframe>');
+WW.appendWindow(win0);
+WW.windows[0].setHeight(285);
+WW.windows[0].setPosX(50);
+WW.windows[0].setPosY(30);
+WW.windows[0].setTitle("Калькулятор");
+WW.windows[0].setResizable(true);
+WW.appendWindow(win1);
+WW.windows[1].setWidth(415);
+WW.windows[1].setResizable(true);
+WW.windows[1].setScrolling("vertical");
+infoUpdate();
+WW.appendWindow(win2);
+win2.setBody(
+	"Сейчас окон: "+WW.getWinNum()+"<br>"+
+	"Индекс этого окна: "+win2.getIndex()+"<br>"+
+	"<input type='button' style='max-width: 250px;' value='Сменить изображение рабочего стола' onclick='WW.setBgUrl(\"images/bg1.jpg\");'>"
+);
+</script>
+</body>
+</html>
