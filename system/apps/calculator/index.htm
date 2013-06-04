@@ -1,0 +1,676 @@
+<!-- Автор ©Иван Черновалов | Author ©Ivan Chernovalov -->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="txt/html; charset=windows-1251">
+<meta name="author" content="Ivan Chernovalov copyright 2011-2012">
+<meta name="reply-to" content="chernivan-96@mail.ru">
+<meta name="keywords" content="калькулятор,calculator,Иван Черновалов,Ivan Chernovalov">
+<title>Калькулятор :: Calculator</title>
+<style type="text/css" media="all">
+body{
+background-color: #FFFFFF;
+}
+#calculator{
+position: absolute;
+left: 5px;
+top: 5px;
+width: 210px;
+height: 247px;
+border: 3px groove black;
+background-color: #FFFFFF;
+}
+a{
+text-decoration: none;
+}
+a:hover{
+cursor: pointer;
+}
+/*Дисплей*/
+#display{
+position: absolute;
+top: 7px;
+left: 3.5px;
+width: 167px;
+height: 20px;
+border: 2px inset #FF0000;
+color: #0000FF;
+}
+#z_display{
+position: absolute;
+top: 7px;
+left: 177px;
+width: 20px;
+height: 20px;
+border: 2px inset #FF0000;
+color: #333333;
+font-size: 20px;
+font-weight: 900;
+}
+/*Кнопки*/
+#b_bsp,#b_ce,#b_rvo{
+position: absolute;
+width: 50px;
+height: 40px;
+background-color: #FFFFFF;
+background-image: url(images/b_rvo.gif);
+background-position: center;
+background-repeat: no-repeat;
+overflow: hidden;
+}
+#b_bsp,#b_ce{
+width: 50px;
+background-image: url(images/b.gif);
+}
+#b_bsp:hover,#b_ce:hover{
+background-image: url(images/b_rvo_p.gif);
+}
+#b_bsp:hover,#b_ce:hover{
+width: 50px;
+background-image: url(images/b_p.gif);
+}
+#b_1,#b_2,#b_3,#b_4,#b_5,#b_6,#b_7,#b_8,#b_9,#b_0,#b_rzd,#b_umn,#b_mns,#b_plus,#b_pmn,#b_tchk{
+position: absolute;
+width: 40px;
+height: 40px;
+background-color: #FFFFFF;
+background-image: url(images/b.gif);
+background-position: center;
+background-repeat: no-repeat;
+overflow: hidden;
+}
+#b_1:hover,#b_2:hover,#b_3:hover,#b_4:hover,#b_5:hover,#b_6:hover,#b_7:hover,#b_8:hover,#b_9:hover,#b_0:hover,#b_rzd:hover,#b_umn:hover,#b_mns:hover,#b_plus:hover,#b_pmn:hover,#b_tchk:hover{
+background-image: url(images/b_p.gif);
+}
+#b_bsp,#b_ce{
+left: 2px;
+top: 40px;
+width: 50px;
+background-position: left;
+background-image: url(images/b_type2.gif);
+}
+#b_bsp:hover{
+background-image: url(images/b_type2_p.gif);
+}
+#b_ce{
+left: 50px;
+background-image: url(images/b_type2.gif);
+}
+#b_ce:hover{
+background-image: url(images/b_type2_p.gif);
+}
+#b_1{
+left: 2px;
+top: 80px;
+}
+#b_2{
+left: 42px;
+top: 80px;
+}
+#b_3{
+left: 82px;
+top: 80px;
+}
+#b_rzd{
+left: 122px;
+top: 80px;
+}
+#b_4{
+left: 2px;
+top: 120px;
+}
+#b_5{
+left: 42px;
+top: 120px;
+}
+#b_6{
+left: 82px;
+top: 120px;
+}
+#b_umn{
+left: 122px;
+top: 120px;
+}
+#b_7{
+left: 2px;
+top: 160px;
+}
+#b_8{
+left: 42px;
+top: 160px;
+}
+#b_9{
+left: 82px;
+top: 160px;
+}
+#b_mns{
+left: 122px;
+top: 160px;
+}
+#b_0{
+left: 2px;
+top: 200px;
+}
+#b_pmn{
+left: 42px;
+top: 200px;
+}
+#b_tchk{
+left: 82px;
+top: 200px;
+}
+#b_plus{
+left: 122px;
+top: 200px;
+}
+/*Текст кнопок*/
+#b_bsp_txt,#b_ce_txt,#b_rvo_txt,#b_rzd_txt,#b_pmn_txt,#b_tchk_txt,#b_rzd_txt,#b_umn_txt,#b_mns_txt,#b_plus_txt{
+position: absolute;
+left: 12px;
+top: 7px;
+font-family:"Times New Roman", Times, serif;
+font-style: italic;
+font-size: 24px;
+font-variant: normal;
+color: #FF0000;
+}
+#b_umn_txt{
+top: 10px;
+}
+#b_bsp_txt:hover,#b_ce_txt:hover,#b_rvo_txt:hover,#b_pmn_txt:hover,#b_tchk_txt:hover,#b_rzd_txt:hover,#b_umn_txt:hover,#b_mns_txt:hover,#b_plus_txt:hover{
+color: #0000FF;
+}
+#b_bsp_txt{
+font-weight: 900;
+}
+#b_plus_txt{
+font-weight: 900;
+}
+#b_ce_txt{
+left: 13px;
+top: 5px;
+}
+#b_1_txt,#b_2_txt,#b_3_txt,#b_4_txt,#b_5_txt,#b_6_txt,#b_7_txt,#b_8_txt,#b_9_txt,#b_0_txt{
+position: absolute;
+left: 12px;
+top: 7px;
+font-family:"Times New Roman", Times, serif;
+font-style: italic;
+font-size: 24px;
+font-variant: normal;
+color: #0000FF;
+}
+#b_1_txt:hover,#b_2_txt:hover,#b_3_txt:hover,#b_4_txt:hover,#b_5_txt:hover,#b_6_txt:hover,#b_7_txt:hover,#b_8_txt:hover,#b_9_txt:hover,#b_0_txt:hover{
+color: #FF0000;
+}
+#b_rzd_txt{
+font-weight: 900;
+left: 15px;
+top: 7px;
+}
+#b_0_txt{
+position: absolute;
+left: 12px;
+top: 7px;
+font-family:"Times New Roman", Times, serif;
+font-style: italic;
+font-size: 24px;
+font-variant: normal;
+color: #0000FF;
+}
+#b_0_txt:hover{
+color: #FF0000;
+}
+#b_pmn_txt,#b_tchk_txt{
+position: absolute;
+left: 12px;
+top: 7px;
+font-family:"Times New Roman", Times, serif;
+font-style: italic;
+font-size: 24px;
+font-variant: normal;
+color: #FF0000;
+}
+#b_pmn_txt{
+position: absolute;
+left: 7px;
+top: 9px;
+font-family:"Times New Roman", Times, serif;
+font-style: italic;
+font-size: 20px;
+font-variant: normal;
+color: #FF0000;
+font-weight: 900;
+}
+#b_pmn_txt:hover,#b_tchk_txt:hover{
+color: #0000FF;
+}
+#b_mns_txt{
+left: 12px;
+top: 7px;
+font-weight: 900;
+}
+#b_tchk_txt{
+left: 18px;
+top: 2px;
+font-size: 22px;
+font-weight: 900;
+}
+/*Авторские права*/
+#author{
+position: absolute;
+left: 5px;
+top: 300px;
+width: 830px;
+height: auto;
+border-left: 2px groove #000000;
+border-top: 2px groove #000000;
+}
+#author_txt_ru,#author_txt_en{
+position: absolute;
+left: 0px;
+top: 0px;
+font-family:"Times New Roman", Times, serif;
+font-style: italic;
+font-size: 20px;
+font-variant: normal;
+color: #0000FF;
+font-weight: 900;
+}
+#author_txt_en{
+left: 0px;
+top: 40px;
+}
+#e-mail{
+position: absolute;
+left: 550px;
+top: 5px;
+width: 285px;
+border-left: 2px groove #000000;
+}
+#e-mail_txt{
+position: absolute;
+left: 10px;
+top: 0px;
+font-family:"Times New Roman", Times, serif;
+font-style: italic;
+font-size: 20px;
+font-variant: normal;
+color: #9900CC;
+font-weight: 900;
+text-decoration: underline;
+}
+#version_ru,#version_en{
+position: absolute;
+font-family:"Times New Roman", Times, serif;
+font-style: italic;
+font-size: 20px;
+font-variant: normal;
+color: #003399;
+font-weight: 900;
+}
+#version_ru{
+left: 0px;
+top: 20px;
+}
+#version_en{
+left: 0px;
+top: 60px;
+}
+#b_mp,#b_mc,#b_mr,#b_kvdrt,#b_dosqr{
+position: absolute;
+width: 40px;
+height: 40px;
+background-color: #FFFFFF;
+background-image: url(images/b_type3.gif);
+background-position: center;
+background-repeat: no-repeat;
+overflow: hidden;
+}
+#b_mp:hover,#b_mc:hover,#b_mr:hover,#b_kvdrt:hover,#b_dosqr:hover{
+background-image: url(images/b_type3_p.gif);
+}
+#b_kvdrt{
+left: 163px;
+top: 80px;
+}
+#b_mp{
+left: 163px;
+top: 120px;
+}
+#b_mc{
+left: 163px;
+top: 200px;
+}
+#b_mr{
+left: 163px;
+top: 160px;
+}
+#b_dosqr{
+left: 98px;
+top: 40px;
+}
+#b_mp_txt,#b_mc_txt,#b_mr_txt,#b_kvdrt_txt,#b_dosqr_txt{
+position: absolute;
+left: 12px;
+top: 7px;
+font-family:"Times New Roman", Times, serif;
+font-style: italic;
+font-size: 24px;
+font-variant: normal;
+color: #0000FF;
+}
+#b_mp_txt,#b_mc_txt,#b_mr_txt{
+font-size: 16px;
+left: 7.5px;
+top: 9px;
+}
+#b_mp_txt:hover,#b_mc_txt:hover,#b_mr_txt:hover,#b_kvdrt_txt:hover,#b_dosqr_txt:hover{
+color: #FFFFFF;
+}
+
+#b_rvo{
+width: 67px;
+left: 136px;
+top: 40px;
+}
+#b_rvo:hover{
+background-image: url(images/b_rvo_p.gif);
+}
+#b_rvo_txt{
+left: 25px;
+top: 7px;
+font-size: 24px;
+color: #9900FF;
+font-weight: 900;
+}
+#b_rvo_txt:hover{
+color: #FF0000;
+}
+</style>
+<script language="javascript" type="text/javascript">
+<!--
+function txt(type){
+var text;
+if(type=='author_ru'){
+text=String.fromCharCode(60,102,111,110,116,32,105,100,61,34,97,117,116,104,111,114,95,116,120,116,95,114,117,34,62,1055,1088,1086,1075,1088,1072,1084,1084,1080,1088,1086,1074,1072,1085,1080,1077,44,32,1088,1072,1079,1084,1077,1090,1082,1072,32,1080,32,1076,1080,1079,1072,1081,1085,58,32,60,115,112,97,110,32,115,116,121,108,101,61,34,99,111,108,111,114,58,32,35,70,70,48,48,48,48,59,34,62,38,99,111,112,121,59,60,47,115,112,97,110,62,1048,1074,1072,1085,32,1063,1077,1088,1085,1086,1074,1072,1083,1086,1074,46,60,47,102,111,110,116,62);
+}
+else if(type=='version_ru'){
+text=String.fromCharCode(60,102,111,110,116,32,105,100,61,34,118,101,114,115,105,111,110,95,114,117,34,62,1042,1077,1088,1089,1080,1103,58,32,118,51,46,49,46,48,32,40,1047,1072,1097,1080,1097,1105,1085,1085,1072,1103,41,46,60,47,102,111,110,116,62);
+}
+else if(type=='author_en'){
+text=String.fromCharCode(60,102,111,110,116,32,105,100,61,34,97,117,116,104,111,114,95,116,120,116,95,101,110,34,62,80,114,111,103,114,97,109,109,105,110,103,44,32,109,97,114,107,117,112,32,97,110,100,32,100,101,115,105,103,110,58,32,60,115,112,97,110,32,115,116,121,108,101,61,34,99,111,108,111,114,58,32,35,70,70,48,48,48,48,59,34,62,38,99,111,112,121,59,60,47,115,112,97,110,62,73,118,97,110,32,67,104,101,114,110,111,118,97,108,111,118,46,60,47,102,111,110,116,62);
+}
+else if(type=='version_en'){
+text=String.fromCharCode(60,102,111,110,116,32,105,100,61,34,118,101,114,115,105,111,110,95,101,110,34,62,86,101,114,115,105,111,110,58,32,118,51,46,49,46,48,32,40,80,114,111,116,101,99,116,101,100,41,46,60,47,102,111,110,116,62);
+}
+else if(type=='mail'){
+text=String.fromCharCode(60,97,32,104,114,101,102,61,34,109,97,105,108,116,111,58,99,104,101,114,110,105,118,97,110,45,57,54,64,109,97,105,108,46,114,117,59,34,32,105,100,61,34,101,45,109,97,105,108,95,116,120,116,34,62,69,45,109,97,105,108,58,32,99,104,101,114,110,105,118,97,110,45,57,54,64,109,97,105,108,46,114,117,60,47,97,62);
+}
+document.write(text);
+}
+// -->
+</script>
+</head>
+<body>
+<div id="calculator">
+<input type="text" id="display" value="0" readonly="readonly">
+<input type="text" id="z_display" value="" readonly="readonly">
+<div id="b_bsp" onClick="backspace();"><a id="b_bsp_txt">&lt;&minus;</a></div><div id="b_ce" onClick="ce(1);"><a id="b_ce_txt">ce</a></div><div id="b_dosqr" onClick="dosqr();"><a id="b_dosqr_txt">x<sup style="position:absolute;left:9px;top:1.5px;font-size: 15px;">2</sup></a></div><div id="b_rvo" onClick="ravno();"><a id="b_rvo_txt">=</a></div> 
+<div id="b_1" onClick="number(1);"><a  id="b_1_txt">1</a></div><div id="b_2" onClick="number(2);"><a id="b_2_txt">2</a></div><div id="b_3" onClick="number(3);"><a id="b_3_txt">3</a></div><div id="b_rzd" onClick="deystv(1);"><a id="b_rzd_txt">/</a></div><div id="b_kvdrt" onClick="kvdrt();"><a id="b_kvdrt_txt">&radic;</a></div>
+<div id="b_4" onClick="number(4);"><a  id="b_4_txt">4</a></div><div id="b_5" onClick="number(5);"><a id="b_5_txt">5</a></div><div id="b_6" onClick="number(6);"><a id="b_6_txt">6</a></div><div id="b_umn" onClick="deystv(2);"><a id="b_umn_txt">*</a></div><div id="b_mp" onClick="m('p');"><a id="b_mp_txt">M+</a></div>
+<div id="b_7" onClick="number(7);"><a  id="b_7_txt">7</a></div><div id="b_8" onClick="number(8);"><a id="b_8_txt">8</a></div><div id="b_9" onClick="number(9);"><a id="b_9_txt">9</a></div><div id="b_mns" onClick="deystv(3);"><a id="b_mns_txt">&minus;</a></div><div id="b_mr" onClick="m('r');"><a id="b_mr_txt">MR</a></div>
+<div id="b_0" onClick="number(0);"><a  id="b_0_txt">0</a></div><div id="b_pmn" onClick="plusminus();"><a id="b_pmn_txt">+/-</a></div><div id="b_tchk" onClick="tchk();"><a id="b_tchk_txt">.</a></div><div id="b_plus" onClick="deystv(4);"><a id="b_plus_txt">+</a></div><div id="b_mc" onClick="m('c');"><a id="b_mc_txt">MC</a></div>
+</div>
+<div id="author">
+<script language="javascript" type="text/javascript"><!--
+txt('author_ru');
+// --></script>
+<script language="javascript" type="text/javascript"><!--
+txt('version_ru');
+// --></script>
+<script language="javascript" type="text/javascript"><!--
+txt('author_en');
+// --></script>
+<script language="javascript" type="text/javascript"><!--
+txt('version_en');
+// -->
+</script>
+<noscript>
+<span style="color: #006633; font-size: 30px; font-weight: 900;">Извините, ваш браузер не поддерживает Javascript, калькулятор может работать не правильно!!!</span><br>
+<span style="color: #FF0000; font-size: 30px; font-weight: 900;">Sorry, your browser does not support Javascript, the calculator can work not correctly!!!</span><br>
+<a href="mailto:chernivan-96@mail.ru;" title="E-mail" style="color: #330099; font-size: 30px; font-weight: 900;">E-mail: chernivan-96@mail.ru</a>
+</noscript>
+<div id="e-mail">
+<script language="javascript" type="text/javascript"><!--
+txt('mail');
+// --></script>
+</div>
+</div>
+<p style="position: absolute;top:330px;left:625px;">
+  <a href="http://validator.w3.org/check?uri=referer" target="_blank"><img
+    src="http://www.w3.org/Icons/valid-html401"
+    alt="Valid HTML 4.01 Transitional" height="31" width="88"></a>
+ </p>
+<script language="javascript" type="text/javascript"><!--
+var display=document.getElementById('display');
+var zdisplay=document.getElementById('z_display');
+display.value='0';
+zdisplay.value='';
+var a='0';
+var b='0';
+var deystvnumber=0;
+var dispfull='0';
+var mem='0';
+function error(){
+if(display.value=='Infinity'){
+display.value='Бесконечность::Infinity';
+zdisplay.value='!';
+ce(0);
+}
+else if(display.value=='NaN'){
+display.value='Ошибка::Error';
+zdisplay.value='!';
+ce(0);
+}
+}
+function deystv(deystvnum){
+if(deystvnumber!=0){
+ravno();
+}
+deystvnumber=deystvnum;
+switch(deystvnum){
+case 1:
+zdisplay.value='/';
+break;
+case 2:
+zdisplay.value='*';
+break;
+case 3:
+zdisplay.value=' -';
+break;
+case 4:
+zdisplay.value='+';
+break;
+}
+dispfull='0';
+}
+function number(num){
+if(parseFloat(deystvnumber)==0){
+a=new String(parseFloat(a+num));
+}
+else{
+b=new String(parseFloat(b+num));
+}
+dispfull=new String(parseFloat(dispfull+num));
+display.value=dispfull;
+}
+function tchk(){
+if(b=='0'&&(a.indexOf(".")<=1)){
+a=a+'.';
+}
+else if(b.indexOf(".")!=-1){
+b=b+'.';
+}
+dispfull=dispfull+'.';
+display.value=dispfull;
+}
+function ravno(){
+if(parseFloat(b)!=0){
+if(deystvnumber==1){
+a=(parseFloat(a))/(parseFloat(b));
+}
+else if(deystvnumber==2){
+a=(parseFloat(a))*(parseFloat(b));
+}
+else if(deystvnumber==3){
+a=(parseFloat(a))-(parseFloat(b));
+}
+else if(deystvnumber==4){
+a=(parseFloat(a))+(parseFloat(b));
+}
+}
+else if((parseFloat(b)==0)&&(deystvnumber==1)){
+alert('На нуль делить нельзя!\n\nYou can\'t devide on zero!');
+}
+zdisplay.value='=';
+display.value=new String(parseFloat(a));
+b='0';
+deystvnumber=0;
+dispfull='0';
+error();
+}
+function plusminus(){
+if(b=='0'){
+if(a.indexOf('-')==-1){
+a='-'+a;
+dispfull=parseFloat(a);
+}
+else{
+a=a.substr(1,a.length);
+dispfull=parseFloat(a);
+}
+dispfull=parseFloat(a);
+}
+else{
+if(b.indexOf('-')==-1){
+b='-'+b;
+dispfull=parseFloat(b);
+}
+else{
+b=b.substr(1,b.length);
+dispfull=parseFloat(b);
+}
+dispfull=parseFloat(b);
+}
+display.value=dispfull;
+}
+function ce(isfull){
+if(isfull==1){
+zdisplay.value='';
+display.value='0';
+}
+a='0';
+b='0';
+deystvnumber=0;
+dispfull='0';
+}
+function backspace(){
+if(a!='0'){
+if(b=='0'){
+a=a.substr(0,((a.length)-1));
+dispfull=new String(parseFloat(a));
+}
+else{
+b=b.substr(0,((b.length)-1));
+dispfull=new String(parseFloat(b));
+}
+display.value=dispfull;
+}
+}
+function kvdrt(){
+if(new String(b)=='0'){
+a=Math.sqrt(a);
+}
+else{
+a=Math.sqrt(b);
+b=new String(a);
+}
+dispfull='0';
+display.value=a;
+error()
+}
+function dosqr(){
+if(new String(b)=='0'){
+a=a*a;
+a=new String(a);
+}
+else{
+a=b*b;
+b=new String( );
+}
+dispfull='0';
+display.value=a;
+error()
+}
+function writeCookie(name, value, hours){
+var expire = "";
+if(hours != null){
+expire = new Date((new Date()).getTime() + hours * 3600000);
+expire = "; expi =" + expire.toGMTString();
+}
+document.cookie = name + "=" + escape(value) + expire;
+}
+function readCookie(name){
+var cookieValue = "";
+var search = name + "=";
+if(document.cookie.length > 0){ 
+offset = document.cookie.indexOf(search);
+if (offset != -1){ 
+offset += search.length;
+end = document.cookie.indexOf(";", offset);
+if (end == -1) end = document.cookie.length;
+cookieValue = unescape(document.cookie.substring(offset, end))
+}
+}
+return cookieValue;
+}
+function m(what){
+error();
+if(what=='p'){
+zdisplay.value='M';
+mem=0;
+mem=a;
+display.value=parseFloat(mem);
+a=new String(mem);
+b='0';
+writeCookie("memory",mem,"999");
+deystvnumber=0;
+dispfull='0';
+}
+else if(what=='r'){
+if(document.cookie){
+mem=readCookie("memory");
+}
+if(deystvnumber==0){
+a=new String(parseFloat(mem));
+}
+else{
+b=new String(parseFloat(mem));
+}
+dispfull=new String(parseFloat(mem));
+display.value=dispfull;
+zdisplay.value='M';
+}
+else if(what=='c'){
+mem=0;
+writeCookie("memory",mem,"999");
+display.value=mem;
+zdisplay.value='C';
+}
+}
+// --></script>
+</body>
+</html>
+<!-- Автор ©Иван Черновалов | Author ©Ivan Chernovalov -->
